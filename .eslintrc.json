@@ -9,9 +9,10 @@
   ],
   "rules": {
     "comma-dangle": ["error", { "functions": "never", "objects": "always-multiline" }],
-    "semi": ["error", "never"],
+    "semi": ["off"],
     "indent": ["error", 2],
     "quotes": ["error", "single"],
+    "@typescript-eslint/semi": ["error"],
     "@typescript-eslint/explicit-module-boundary-types": ["off"]
   }
 }

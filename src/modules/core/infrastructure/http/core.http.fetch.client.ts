@@ -1,5 +1,5 @@
-import { HTTPFetchClient } from 'dav-client/lib'
+import { HTTPFetchClient } from 'dav-client/lib';
 
-const httpFetchClient = new HTTPFetchClient()
+const httpFetchClient = new HTTPFetchClient();
 
-export default httpFetchClient
+export default httpFetchClient;
