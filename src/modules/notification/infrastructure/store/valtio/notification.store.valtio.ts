@@ -1,5 +1,5 @@
-import { proxy, subscribe } from 'valtio/vanilla';
-import EventNotification from '../../../domain/entity/EventNotification';
+import { proxy, subscribe } from 'valtio/vanilla'
+import EventNotification from '../../../domain/entity/EventNotification'
 
 export interface EventNotificationState {
   eventNotifications: EventNotification[];
@@ -8,9 +8,9 @@ export interface EventNotificationState {
 
 const eventNotificationState = proxy<EventNotificationState>({
   eventNotifications: [],
-  isLoading: false
-});
+  isLoading: false,
+})
 
-export { subscribe };
+export { subscribe }
 
-export default eventNotificationState;
+export default eventNotificationState

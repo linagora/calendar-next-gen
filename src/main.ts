@@ -1,11 +1,11 @@
-import { createApp } from 'vue';
-import Stream from 'stream';
+import { createApp } from 'vue'
+import Stream from 'stream'
 
 import App from './App.vue';
 
-(window as any).Stream = Stream;
+(window as any).Stream = Stream
 
 const app = createApp(App)
-  .mount('#app');
+  .mount('#app')
 
-export default app;
+export default app

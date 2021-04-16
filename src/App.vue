@@ -1,22 +1,25 @@
 <template>
   <div>
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <CalNotification userId="5f60334e78d1b021351f9f6e" />
+    <img
+      alt="Vue logo"
+      src="./assets/logo.png"
+    >
+    <CalNotification user-id="5f60334e78d1b021351f9f6e" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import CalNotification from './modules/notification/presentation/components/CalNotification.vue';
+import { defineComponent } from 'vue'
+import CalNotification from './modules/notification/presentation/components/CalNotification.vue'
 
-console.log('CalNotification', CalNotification);
+console.log('CalNotification', CalNotification)
 
 export default defineComponent({
   name: 'App',
   components: {
-    CalNotification
-  }
-});
+    CalNotification,
+  },
+})
 </script>
 
 <style>

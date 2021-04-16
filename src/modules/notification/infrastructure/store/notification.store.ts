@@ -1,23 +1,23 @@
-import EventNotification from '../../domain/entity/EventNotification';
-import valtioEventNotificationStore, { EventNotificationState, subscribe } from './valtio/notification.store.valtio';
+import EventNotification from '../../domain/entity/EventNotification'
+import valtioEventNotificationStore, { EventNotificationState, subscribe } from './valtio/notification.store.valtio'
 
 export type StoreListener = (state: EventNotificationState) => void;
 
 class EventNotificationStore {
   subscribeToEventNotifications(listener: StoreListener) {
     subscribe(valtioEventNotificationStore, () => {
-      console.log(valtioEventNotificationStore);
-      listener(valtioEventNotificationStore);
-    });
+      console.log(valtioEventNotificationStore)
+      listener(valtioEventNotificationStore)
+    })
   }
 
   setIsLoading(isLoading: boolean) {
-    valtioEventNotificationStore.isLoading = isLoading;
+    valtioEventNotificationStore.isLoading = isLoading
   }
 
   setEventNotifications(eventNotifications: EventNotification[]) {
-    valtioEventNotificationStore.eventNotifications = eventNotifications;
+    valtioEventNotificationStore.eventNotifications = eventNotifications
   }
 }
 
-export default new EventNotificationStore();
+export default new EventNotificationStore()
