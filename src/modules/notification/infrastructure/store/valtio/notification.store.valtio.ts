@@ -8,7 +8,7 @@ export interface EventNotificationState {
 
 const eventNotificationState = proxy<EventNotificationState>({
   eventNotifications: [],
-  isLoading: false
+  isLoading: false,
 });
 
 export { subscribe };

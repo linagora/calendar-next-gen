@@ -21,6 +21,6 @@ export default function useEventNotifications(userId: string) {
 
   return {
     eventNotifications,
-    isLoading
-  }
+    isLoading,
+  };
 }
