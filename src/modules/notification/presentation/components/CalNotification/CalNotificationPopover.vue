@@ -19,6 +19,7 @@
 </template>
 
 <script lang="ts">
+import useEventNotifications from '../../../application/useEventNotifications';
 import { defineComponent, ref } from 'vue';
 import CalNotificationItem from './CalNotificationItem.vue';
 
@@ -27,34 +28,13 @@ export default defineComponent({
   components: {
     CalNotificationItem,
   },
+  props: {
+    userId: String,
+  },
   emits: ['change-participation'],
   setup(props, ctx) {
-    const notificationItems = ref([
-      {
-        id: 0,
-        title: 'Stupefy',
-        start: new Date().setHours(12),
-        organizerCN: 'Tuan Le Cong (tlcong@linagora.com)',
-      },
-      {
-        id: 1,
-        title: 'Avada Kedavra',
-        start: new Date().setHours(10),
-        organizerCN: 'Thao Nguyen Linh (tnlinh@linagora.com)',
-      },
-      {
-        id: 2,
-        title: 'Expelliarmus',
-        start: new Date().setHours(9),
-        organizerCN: 'Renaud Boyer (rboyer@linagora.com)',
-      },
-      {
-        id: 3,
-        title: 'Expecto Patronum',
-        start: new Date().setHours(8),
-        organizerCN: 'Huy Ta Quoc (htquoc@linagora.com)',
-      }
-    ]);
+    const application = useEventNotifications(props.userId as string);
+    const notificationItems = ref(application.eventNotifications);
 
     const handleChangeParticipation = (eventId: string) => (participationStatus: 'yes' | 'maybe' | 'no') => {
       ctx.emit('change-participation', { eventId, participationStatus });
