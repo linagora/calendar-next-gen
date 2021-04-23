@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .js,.ts,.vue"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
     "dav-client": "github:huy-ta/dav-client#fuck",
     "stream": "^0.0.2",
     "valtio": "^1.0.3",
