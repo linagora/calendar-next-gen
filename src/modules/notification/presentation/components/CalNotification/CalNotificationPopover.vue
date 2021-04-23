@@ -72,11 +72,12 @@ export default defineComponent({
 @import '../../../../core/presentation/styles/_variables';
 
 .cal-notification-popover {
-  box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 1px 0 0 rgb(0 0 0 / 5%), 0 0 20px 0 rgb(0 0 0 / 15%);
   border-radius: 8px;
   padding: 4px 0;
   max-height: 350px;
   overflow-y: auto;
+  background: $white;
 
   .cal-notification-popover__separator {
     border: none;
