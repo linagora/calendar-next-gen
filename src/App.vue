@@ -7,7 +7,10 @@
     >
     <c-popover>
       <template #content>
-        <cal-notification-popover @change-participation="handleChangeParticipation" />
+        <cal-notification-popover
+          user-id="5fbb828496e95069fd4d5112"
+          @change-participation="handleChangeParticipation"
+        />
       </template>
       <cal-notification-bell should-display-badge />
     </c-popover>

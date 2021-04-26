@@ -7,7 +7,7 @@
       {{ notificationItem.start ? formatDate(notificationItem.start) : 'Unknown date' }}
     </p>
     <p class="cal-notification-item__info">
-      From: {{ notificationItem.organizerCN || 'Anonymous' }}
+      From: {{ notificationItem.extendedProps.organizer || 'Anonymous' }}
     </p>
     <div class="cal-notification-item__participation-buttons">
       <button

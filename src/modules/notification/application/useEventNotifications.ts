@@ -10,11 +10,11 @@ export default function useEventNotifications(userId: string) {
   const isLoading = ref<boolean>(false);
   const eventNotifications = ref<EventNotification[]>([]);
 
-  eventNotificationStore.subscribeToEventNotifications(({ eventNotifications: newEventNotifications, isLoading: newIsLoading }) => {
-    eventNotifications.value = newEventNotifications;
-    console.log('eventNotifications', eventNotifications.value);
+  eventNotificationStore.setIsLoading(isLoading.value);
 
-    isLoading.value = newIsLoading;
+  eventNotificationStore.subscribeToEventNotifications(({ eventNotificationList, loading }) => {
+    eventNotifications.value = eventNotificationList;
+    isLoading.value = loading;
   });
 
   eventNotificationService.fetchEventNotifications(userId);

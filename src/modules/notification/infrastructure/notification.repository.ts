@@ -11,7 +11,6 @@ class EventNotificationRepository implements NotificationRepositoryInterface {
       const eventNotifications = await notificationHttp.getEventNotifications(userId);
 
       notificationStore.setEventNotifications(eventNotifications);
-
       notificationStore.setIsLoading(false);
 
       return eventNotifications;
