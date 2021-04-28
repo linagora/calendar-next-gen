@@ -43,6 +43,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import './modules/core/presentation/styles/typography';
+
 #app {
   font-family: Roboto;
   -webkit-font-smoothing: antialiased;

@@ -1,0 +1,39 @@
+@import './variables';
+
+.c-h1, .c-h2, .c-h3, .c-h4, .c-h5, .c-h6 {
+  color: $primary-text;
+  margin: 0;
+  font-weight: 500;
+}
+
+.c-h1 {
+  font-size: 32px;
+}
+
+.c-h2 {
+  font-size: 24px;
+}
+
+.c-h3 {
+  font-size: 20px;
+}
+
+.c-h4 {
+  font-size: 16px;
+}
+
+.c-h5 {
+  font-size: 14px;
+}
+
+.c-h6 {
+  font-size: 12px;
+}
+
+.c-p {
+  margin: 0;
+
+  &.c-p--secondary {
+    color: $secondary-text;
+  }
+}
