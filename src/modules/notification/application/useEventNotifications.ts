@@ -19,9 +19,14 @@ export default function useEventNotifications(userId: string) {
     error.value = storeError;
   });
 
-  eventNotificationService.fetchEventNotifications(userId);
+  const fetchEventNotifications = () => {
+    eventNotificationService.fetchEventNotifications(userId);
+  };
+
+  fetchEventNotifications();
 
   return {
+    fetchEventNotifications,
     eventNotifications,
     isLoading,
     error,
