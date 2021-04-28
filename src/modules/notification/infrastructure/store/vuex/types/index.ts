@@ -6,17 +6,20 @@ import {
 
 export enum MutationTypes {
   SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
-  SET_LOADING = 'SET_LOADING'
+  SET_LOADING = 'SET_LOADING',
+  SET_ERROR = 'SET_ERROR'
 }
 
 export type State = {
   eventNotificationList: EventNotification[],
-  isLoading: boolean
+  isLoading: boolean,
+  error: Record<string, unknown> | null,
 };
 
 export type Mutations<S = State> = {
   [MutationTypes.SET_NOTIFICATIONS](state: S, payload: EventNotification[]): void;
   [MutationTypes.SET_LOADING](state: S, payload: boolean): void;
+  [MutationTypes.SET_ERROR](state: S, payload: Record<string, unknown> | null): void;
 };
 
 export type Getters = {

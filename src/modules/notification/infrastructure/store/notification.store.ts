@@ -5,7 +5,8 @@ import { MutationPayload } from 'vuex';
 
 export type ListenerPayload = {
   eventNotificationList: EventNotification[],
-  loading: boolean
+  loading: boolean,
+  error: Record<string, unknown> | null,
 };
 
 export type StoreListener = (payload: ListenerPayload) => void;
@@ -16,6 +17,7 @@ class EventNotificationStore {
       listener({
         eventNotificationList : state.eventNotificationList,
         loading: state.isLoading,
+        error: state.error,
       });
     });
   }
@@ -26,6 +28,10 @@ class EventNotificationStore {
 
   setEventNotifications(eventNotifications: EventNotification[]) {
     store.commit(MutationTypes.SET_NOTIFICATIONS, eventNotifications);
+  }
+
+  setError(error: Record<string, unknown> | null) {
+    store.commit(MutationTypes.SET_ERROR, error);
   }
 }
 

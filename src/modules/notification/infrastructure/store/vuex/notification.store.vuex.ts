@@ -5,6 +5,7 @@ import { Getters, Mutations, MutationTypes, State as NotificationState, Store } 
 const state = (): NotificationState => ({
   eventNotificationList: [],
   isLoading: false,
+  error: null,
 });
 
 const getters: GetterTree<NotificationState, NotificationState> & Getters = {
@@ -19,6 +20,10 @@ const mutations: MutationTree<NotificationState> & Mutations = {
 
   [MutationTypes.SET_LOADING](state: NotificationState, payload: boolean) {
     state.isLoading = payload;
+  },
+
+  [MutationTypes.SET_ERROR](state: NotificationState, payload: Record<string, unknown> | null) {
+    state.error = payload;
   },
 };
 
