@@ -1,19 +1,12 @@
-import EventNotification from '../../../domain/entity/EventNotification';
+import EventNotification from '../../../../domain/entity/EventNotification';
 import {
-  ActionContext,
   Store as VuexStore,
-  CommitOptions,
-  DispatchOptions
+  CommitOptions
 } from 'vuex';
 
 export enum MutationTypes {
   SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
   SET_LOADING = 'SET_LOADING'
-}
-
-export enum ActionTypes {
-  SET_NOTIFICATIONS = 'SET_NOTIFICATIONS',
-  SET_LOADING_STATE = 'SET_LOADING_STATE'
 }
 
 export type State = {
@@ -31,25 +24,6 @@ export type Getters = {
   loading(state: State): boolean
 };
 
-type AugmentedActionContext = {
-  commit<K extends keyof Mutations>(
-    key: K,
-    payload: Parameters<Mutations[K]>[1]
-  ): ReturnType<Mutations[K]>
-} & Omit<ActionContext<State, State>, 'commit'>;
-
-export interface Actions {
-  [ActionTypes.SET_NOTIFICATIONS](
-    { commit }: AugmentedActionContext,
-    payload: EventNotification[]
-  ): void;
-
-  [ActionTypes.SET_LOADING_STATE](
-    { commit }: AugmentedActionContext,
-    payload: boolean
-  ): void;
-}
-
 export type Store = Omit<
   VuexStore<State>,
   'getters' | 'commit' | 'dispatch'
@@ -59,12 +33,6 @@ export type Store = Omit<
     payload: P,
     options?: CommitOptions
   ): ReturnType<Mutations[K]>
-} & {
-  dispatch<K extends keyof Actions>(
-    key: K,
-    payload: Parameters<Actions[K]>[1],
-    options?: DispatchOptions
-  ): ReturnType<Actions[K]>
 } & {
   getters: {
     [K in keyof Getters]: ReturnType<Getters[K]>

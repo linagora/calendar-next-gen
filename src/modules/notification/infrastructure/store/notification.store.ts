@@ -1,6 +1,6 @@
 import EventNotification from '../../domain/entity/EventNotification';
 import { store } from './vuex/notification.store.vuex';
-import { ActionTypes, State } from './types';
+import { MutationTypes, State } from './vuex/types';
 import { MutationPayload } from 'vuex';
 
 export type ListenerPayload = {
@@ -21,11 +21,11 @@ class EventNotificationStore {
   }
 
   setIsLoading(isLoading: boolean) {
-    store.dispatch(ActionTypes.SET_LOADING_STATE, isLoading);
+    store.commit(MutationTypes.SET_LOADING, isLoading);
   }
 
   setEventNotifications(eventNotifications: EventNotification[]) {
-    store.dispatch(ActionTypes.SET_NOTIFICATIONS, eventNotifications);
+    store.commit(MutationTypes.SET_NOTIFICATIONS, eventNotifications);
   }
 }
 
