@@ -5,6 +5,7 @@ import notificationStore from './store/notification.store';
 
 class EventNotificationRepository implements NotificationRepositoryInterface {
   public async fetchEventNotifications(userId: string): Promise<EventNotification[]> {
+    notificationStore.setError(null);
     notificationStore.setIsLoading(true);
 
     try {
@@ -14,8 +15,10 @@ class EventNotificationRepository implements NotificationRepositoryInterface {
       notificationStore.setIsLoading(false);
 
       return eventNotifications;
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
+
+      notificationStore.setError(error);
     }
 
     notificationStore.setIsLoading(false);

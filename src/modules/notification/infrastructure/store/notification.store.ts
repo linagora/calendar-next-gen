@@ -1,11 +1,12 @@
 import EventNotification from '../../domain/entity/EventNotification';
 import { store } from './vuex/notification.store.vuex';
-import { ActionTypes, State } from './types';
+import { MutationTypes, State } from './vuex/types';
 import { MutationPayload } from 'vuex';
 
 export type ListenerPayload = {
   eventNotificationList: EventNotification[],
-  loading: boolean
+  loading: boolean,
+  error: Record<string, unknown> | null,
 };
 
 export type StoreListener = (payload: ListenerPayload) => void;
@@ -16,16 +17,21 @@ class EventNotificationStore {
       listener({
         eventNotificationList : state.eventNotificationList,
         loading: state.isLoading,
+        error: state.error,
       });
     });
   }
 
   setIsLoading(isLoading: boolean) {
-    store.dispatch(ActionTypes.SET_LOADING_STATE, isLoading);
+    store.commit(MutationTypes.SET_LOADING, isLoading);
   }
 
   setEventNotifications(eventNotifications: EventNotification[]) {
-    store.dispatch(ActionTypes.SET_NOTIFICATIONS, eventNotifications);
+    store.commit(MutationTypes.SET_NOTIFICATIONS, eventNotifications);
+  }
+
+  setError(error: Record<string, unknown> | null) {
+    store.commit(MutationTypes.SET_ERROR, error);
   }
 }
 

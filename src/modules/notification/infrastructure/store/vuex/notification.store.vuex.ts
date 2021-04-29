@@ -1,25 +1,16 @@
 import EventNotification from '../../../domain/entity/EventNotification';
-import { ActionTree, createStore, GetterTree, MutationTree } from 'vuex';
-import { Actions, ActionTypes, Getters, Mutations, MutationTypes, State as NotificationState, Store } from '../types';
+import { createStore, GetterTree, MutationTree } from 'vuex';
+import { Getters, Mutations, MutationTypes, State as NotificationState, Store } from './types';
 
 const state = (): NotificationState => ({
   eventNotificationList: [],
   isLoading: false,
+  error: null,
 });
 
 const getters: GetterTree<NotificationState, NotificationState> & Getters = {
   notificationList: state => state.eventNotificationList,
   loading: state => state.isLoading,
-};
-
-const actions: ActionTree<NotificationState, NotificationState> & Actions = {
-  [ActionTypes.SET_NOTIFICATIONS]({ commit }, payload) {
-    commit(MutationTypes.SET_NOTIFICATIONS, payload);
-  },
-
-  [ActionTypes.SET_LOADING_STATE]({ commit }, payload) {
-    commit(MutationTypes.SET_LOADING, payload);
-  },
 };
 
 const mutations: MutationTree<NotificationState> & Mutations = {
@@ -30,12 +21,15 @@ const mutations: MutationTree<NotificationState> & Mutations = {
   [MutationTypes.SET_LOADING](state: NotificationState, payload: boolean) {
     state.isLoading = payload;
   },
+
+  [MutationTypes.SET_ERROR](state: NotificationState, payload: Record<string, unknown> | null) {
+    state.error = payload;
+  },
 };
 
 export const store = createStore({
   state,
   getters,
-  actions,
   mutations,
 });
 

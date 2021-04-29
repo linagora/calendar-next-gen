@@ -5,44 +5,25 @@
       alt="Vue logo"
       src="./assets/logo.png"
     >
-    <c-popover>
-      <template #content>
-        <cal-notification-popover
-          user-id="5fbb828496e95069fd4d5112"
-          @change-participation="handleChangeParticipation"
-        />
-      </template>
-      <cal-notification-bell should-display-badge />
-    </c-popover>
+    <cal-notification user-id="5fbb828496e95069fd4d5112" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import CPopover from './modules/core/presentation/components/CPopover.vue';
-import CalNotificationBell from './modules/notification/presentation/components/CalNotification/CalNotificationBell.vue';
-import CalNotificationPopover from './modules/notification/presentation/components/CalNotification/CalNotificationPopover.vue';
+import CalNotification from './modules/notification/presentation/components/CalNotification/CalNotification.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    CalNotificationPopover,
-    CalNotificationBell,
-    CPopover,
-  },
-  setup() {
-    const handleChangeParticipation = ({ eventId, participationStatus }: { eventId: string, participationStatus: 'yes' | 'maybe' | 'no' }) => {
-      console.log(eventId, participationStatus);
-    };
-
-    return {
-      handleChangeParticipation,
-    };
+    CalNotification,
   },
 });
 </script>
 
 <style lang="scss">
+@import './modules/core/presentation/styles/typography';
+
 #app {
   font-family: Roboto;
   -webkit-font-smoothing: antialiased;
