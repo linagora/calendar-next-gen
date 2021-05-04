@@ -15,7 +15,31 @@
         Reload
       </c-button>
     </div>
-    <div v-show="!error">
+    <div
+      v-if="isLoading"
+      class="cal-notification-popover__loading"
+    >
+      <c-spinner class="cal-notification-popover__loading__spinner" />
+      <h4 class="cal-notification-popover__loading__title c-h4">
+        Loading event notifications...
+      </h4>
+      <p class="cal-notification-popover__loading__subtitle c-p c-p--secondary">
+        We will notify you when something arrives.
+      </p>
+    </div>
+    <div
+      v-if="!isLoading && !error && !eventNotifications.length"
+      class="cal-notification-popover__empty"
+    >
+      <empty-box-icon class="cal-notification-popover__empty__icon" />
+      <h4 class="cal-notification-popover__empty__title c-h4">
+        No event notifications yet!
+      </h4>
+      <p class="cal-notification-popover__empty__subtitle c-p c-p--secondary">
+        We will notify you when something arrives.
+      </p>
+    </div>
+    <div v-if="!isLoading && !error && eventNotifications.length">
       <template
         v-for="(eventNotification, index) in eventNotifications"
         :key="eventNotification.id"
@@ -39,7 +63,9 @@
 import { defineComponent, PropType } from 'vue';
 import CalNotificationItem from './CalNotificationItem.vue';
 import ErrorIcon from '../../../../core/presentation/icons/ErrorIcon.vue';
+import EmptyBoxIcon from '../../../../core/presentation/icons/EmptyBoxIcon.vue';
 import CButton from '../../../../core/presentation/components/CButton.vue';
+import CSpinner from '../../../../core/presentation/components/CSpinner.vue';
 import EventNotification from '../../../domain/entity/EventNotification';
 
 export default defineComponent({
@@ -48,6 +74,8 @@ export default defineComponent({
     CalNotificationItem,
     ErrorIcon,
     CButton,
+    CSpinner,
+    EmptyBoxIcon,
   },
   props: {
     eventNotifications: {
@@ -99,7 +127,7 @@ export default defineComponent({
 
   .cal-notification-popover__error {
     .cal-notification-popover__error__icon {
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .cal-notification-popover__error__title {
@@ -109,6 +137,42 @@ export default defineComponent({
     }
 
     .cal-notification-popover__error__subtitle {
+      margin-bottom: 16px;
+      max-width: 240px;
+      text-align: center;
+    }
+  }
+
+  .cal-notification-popover__loading {
+    .cal-notification-popover__loading__spinner {
+      margin-bottom: 12px;
+    }
+
+    .cal-notification-popover__loading__title {
+      margin-bottom: 12px;
+      max-width: 240px;
+      text-align: center;
+    }
+
+    .cal-notification-popover__loading__subtitle {
+      margin-bottom: 16px;
+      max-width: 240px;
+      text-align: center;
+    }
+  }
+
+  .cal-notification-popover__empty {
+    .cal-notification-popover__empty__icon {
+      margin-bottom: 12px;
+    }
+
+    .cal-notification-popover__empty__title {
+      margin-bottom: 12px;
+      max-width: 240px;
+      text-align: center;
+    }
+
+    .cal-notification-popover__empty__subtitle {
       margin-bottom: 16px;
       max-width: 240px;
       text-align: center;
