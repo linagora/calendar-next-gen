@@ -39,7 +39,10 @@
         We will notify you when something arrives.
       </p>
     </div>
-    <div v-if="!isLoading && !error && eventNotifications.length">
+    <div
+      v-if="!isLoading && !error && eventNotifications.length"
+      class="cal-notification-popover__content"
+    >
       <template
         v-for="(eventNotification, index) in eventNotifications"
         :key="eventNotification.id"
@@ -52,7 +55,7 @@
         />
         <hr
           v-if="index !== eventNotification.length - 1"
-          class="cal-notification-popover__separator"
+          class="cal-notification-popover__content__separator"
         >
       </template>
     </div>
@@ -179,10 +182,15 @@ export default defineComponent({
     }
   }
 
-  .cal-notification-popover__separator {
-    border: none;
-    border-top: 1px solid #e0e0e0;
-    margin: 0;
+  .cal-notification-popover__content {
+    width: 100%;
+    height: 350px;
+
+    .cal-notification-popover__content__separator {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 0;
+    }
   }
 }
 </style>
