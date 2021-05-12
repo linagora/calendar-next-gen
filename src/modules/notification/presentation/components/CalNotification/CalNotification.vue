@@ -14,7 +14,8 @@
 
 <script lang="ts">
 import useEventNotifications from '../../../application/useEventNotifications';
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import type User from '../../../../user/domain/entity/User';
 import CPopover from '../../../../core/presentation/components/CPopover.vue';
 import CalNotificationPopover from './CalNotificationPopover.vue';
 import CalNotificationBell from './CalNotificationBell.vue';
@@ -27,13 +28,13 @@ export default defineComponent({
     CalNotificationBell,
   },
   props: {
-    userId: {
-      type: String,
+    user: {
+      type: Object as PropType<User>,
       required: true,
     },
   },
   setup(props) {
-    const { fetchEventNotifications, eventNotifications, isLoading, error } = useEventNotifications(props.userId);
+    const { fetchEventNotifications, eventNotifications, isLoading, error } = useEventNotifications(props.user.id);
 
     const handleReloadNotifications = () => {
       fetchEventNotifications();

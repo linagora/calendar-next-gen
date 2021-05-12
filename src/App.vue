@@ -5,18 +5,29 @@
       alt="Vue logo"
       src="./assets/logo.png"
     >
-    <cal-notification user-id="5fbb828496e95069fd4d5112" />
+    <cal-notification :user="user" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import CalNotification from './modules/notification/presentation/components/CalNotification/CalNotification.vue';
+import type User from './modules/user/domain/entity/User';
 
 export default defineComponent({
   name: 'App',
   components: {
     CalNotification,
+  },
+  setup() {
+    const user = reactive<User>({
+      id: '5f72b8cb94ccc660c4615261',
+      preferredEmail: 'admin@open-paas.org',
+    });
+
+    return {
+      user,
+    };
   },
 });
 </script>
