@@ -11,10 +11,12 @@
     "@popperjs/core": "^2.9.2",
     "dav-client": "github:linagora/dav-client",
     "stream": "^0.0.2",
+    "url-join": "^4.0.1",
     "vue": "^3.0.11",
     "vuex": "^4.0.0"
   },
   "devDependencies": {
+    "@types/url-join": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "@vitejs/plugin-vue": "^1.2.1",

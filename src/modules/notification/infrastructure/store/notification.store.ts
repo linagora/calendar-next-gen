@@ -22,6 +22,10 @@ class EventNotificationStore {
     });
   }
 
+  getEventNotifications(): EventNotification[] {
+    return store.state.eventNotificationList;
+  }
+
   setIsLoading(isLoading: boolean) {
     store.commit(MutationTypes.SET_LOADING, isLoading);
   }

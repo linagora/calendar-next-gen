@@ -1,8 +1,5 @@
-import { CalendarEventObject } from 'dav-parser';
+import Event from '../../../event/domain/entity/Event';
 
-export default interface EventNotification extends CalendarEventObject {
-  id: string;
-  title: string;
-  start: Date | string;
-  end: Date | string;
-}
+type EventNotification = Event;
+
+export default EventNotification;

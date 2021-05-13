@@ -23,10 +23,15 @@ export default function useEventNotifications(userId: string) {
     eventNotificationService.fetchEventNotifications(userId);
   };
 
+  const deleteEventNotification = (eventHref: string) => {
+    eventNotificationService.deleteEventNotification(eventHref);
+  };
+
   fetchEventNotifications();
 
   return {
     fetchEventNotifications,
+    deleteEventNotification,
     eventNotifications,
     isLoading,
     error,
