@@ -43,21 +43,28 @@
       v-if="!isLoading && !error && eventNotifications.length"
       class="cal-notification-popover__content"
     >
-      <template
-        v-for="(eventNotification, index) in eventNotifications"
-        :key="eventNotification.href"
+      <transition-group
+        class="cal-notification-list"
+        name="cal-notification-list"
+        tag="div"
       >
-        <cal-notification-item
-          :notification-item="eventNotification"
-          @yes="handleChangeParticipation(eventNotification.href)(Partstat.ACCEPTED)"
-          @maybe="handleChangeParticipation(eventNotification.href)(Partstat.TENTATIVE)"
-          @no="handleChangeParticipation(eventNotification.href)(Partstat.DECLINED)"
-        />
-        <hr
-          v-if="index !== eventNotification.length - 1"
-          class="cal-notification-popover__content__separator"
+        <div
+          v-for="(eventNotification, index) in eventNotifications"
+          :key="eventNotification.href"
+          class="cal-notification-list-item"
         >
-      </template>
+          <cal-notification-item
+            :notification-item="eventNotification"
+            @yes="handleChangeParticipation(eventNotification.href)(Partstat.ACCEPTED)"
+            @maybe="handleChangeParticipation(eventNotification.href)(Partstat.TENTATIVE)"
+            @no="handleChangeParticipation(eventNotification.href)(Partstat.DECLINED)"
+          />
+          <hr
+            v-if="index !== eventNotifications.length - 1"
+            class="cal-notification-popover__content__separator"
+          >
+        </div>
+      </transition-group>
     </div>
   </section>
 </template>
@@ -116,6 +123,26 @@ export default defineComponent({
 
 <style lang="scss">
 @import '../../../../core/presentation/styles/_variables';
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.cal-notification-list-item {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.cal-notification-list-leave-active {
+  animation-name: fadeOutRight;
+}
 
 .cal-notification-popover {
   display: flex;
