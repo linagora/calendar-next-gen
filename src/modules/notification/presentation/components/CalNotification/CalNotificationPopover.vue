@@ -45,13 +45,13 @@
     >
       <template
         v-for="(eventNotification, index) in eventNotifications"
-        :key="eventNotification.id"
+        :key="eventNotification.href"
       >
         <cal-notification-item
           :notification-item="eventNotification"
-          @yes="handleChangeParticipation(eventNotification.id)('yes')"
-          @maybe="handleChangeParticipation(eventNotification.id)('maybe')"
-          @no="handleChangeParticipation(eventNotification.id)('no')"
+          @yes="handleChangeParticipation(eventNotification.href)(Partstat.ACCEPTED)"
+          @maybe="handleChangeParticipation(eventNotification.href)(Partstat.TENTATIVE)"
+          @no="handleChangeParticipation(eventNotification.href)(Partstat.DECLINED)"
         />
         <hr
           v-if="index !== eventNotification.length - 1"
@@ -64,6 +64,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { Partstat } from 'dav-client/types/EventPartstat';
 import CalNotificationItem from './CalNotificationItem.vue';
 import ErrorIcon from '../../../../core/presentation/icons/ErrorIcon.vue';
 import EmptyBoxIcon from '../../../../core/presentation/icons/EmptyBoxIcon.vue';
@@ -96,8 +97,8 @@ export default defineComponent({
   },
   emits: ['change-participation', 'reload-notifications'],
   setup(props, ctx) {
-    const handleChangeParticipation = (eventId: string) => (participationStatus: 'yes' | 'maybe' | 'no') => {
-      ctx.emit('change-participation', { eventId, participationStatus });
+    const handleChangeParticipation = (eventHref: string) => (partstat: Partstat) => {
+      ctx.emit('change-participation', { eventHref, partstat });
     };
 
     const handleReloadNotifications = () => {
@@ -107,6 +108,7 @@ export default defineComponent({
     return {
       handleChangeParticipation,
       handleReloadNotifications,
+      Partstat,
     };
   },
 });
